@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeArena - GateKeeper</title>
+    <link rel="stylesheet" href="../styles/gatekeeper.css">
+</head>
+<body>
+
+    <div class="gatekeeper-container">
+
+    <!-- GREETING SECTION -->
+    <div id="greetingSection" class="greeting-section">
+        <div class="time-icon" id="timeIcon">🌙</div>
+        <h1 class="greeting" id="greetingText">Good Evening, Coder!</h1>
+        <p class="tagline">Let's get your brain started 🧠</p>
+    </div>
+
+    <!-- QUESTION SECTION (hidden at start) -->
+    <div id="questionSection" class="question-section hidden">
+
+        <div class="lock-container">
+            <div class="lock-icon">🔐</div>
+            <p class="lock-text">Answer correctly to unlock CodeArena</p>
+        </div>
+
+        <div class="question-card">
+            <div class="question-header">
+                <span class="question-badge">QUESTION</span>
+                <span class="difficulty-badge" id="difficulty">Easy</span>
+            </div>
+            <p class="question-text" id="questionText"></p>
+        </div>
+
+        <div class="options-container">
+            <div class="option" data-option="A"><div class="option-letter">A</div><div class="option-text"></div></div>
+            <div class="option" data-option="B"><div class="option-letter">B</div><div class="option-text"></div></div>
+            <div class="option" data-option="C"><div class="option-letter">C</div><div class="option-text"></div></div>
+            <div class="option" data-option="D"><div class="option-letter">D</div><div class="option-text"></div></div>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="submit-btn" id="submitBtn">
+            <span>Submit Answer</span>
+            <span class="btn-icon">→</span>
+        </button>
+
+        <button class="hint-btn" id="hintBtn">
+            💡 Need a hint? (Question will change)
+        </button>
+
+    </div>
+
+</div>
+<script src="../scripts/gatekeeper.js"></script>
+</body>
+</html>
