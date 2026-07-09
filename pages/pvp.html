@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeArena - 1v1 Battle</title>
+    <link rel="stylesheet" href="../styles/pvp.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-left">
+            <span class="logo">🚀 CodeArena</span>
+            <span class="page-title">⚔️ 1v1 Battle</span>
+        </div>
+        <div class="timer-box" id="timerBox">
+            <span class="timer-icon">⏱️</span>
+            <span class="timer" id="timer">30:00</span>
+        </div>
+        <div class="top-right">
+            <button class="leave-btn" id="leaveBtn">🚪 Leave Match</button>
+        </div>
+    </div>
+
+    <!-- MATCHMAKING SCREEN -->
+    <div class="screen" id="matchmakingScreen">
+        <div class="matchmaking-container">
+            <div class="pulse-ring"></div>
+            <div class="search-icon">⚔️</div>
+            <h1>Finding Opponent...</h1>
+            <p>Searching for a coder at your level</p>
+            <div class="dots">
+                <span></span><span></span><span></span>
+            </div>
+            <button class="cancel-btn" id="cancelBtn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- BATTLE SCREEN -->
+    <div class="screen hidden" id="battleScreen">
+
+        <!-- PLAYERS BAR -->
+        <div class="players-bar">
+            <div class="player you">
+                <div class="player-avatar">👤</div>
+                <div class="player-info">
+                    <span class="player-name">You</span>
+                    <span class="player-elo">⭐ 1200 ELO</span>
+                </div>
+                <div class="player-status" id="yourStatus">🟡 Coding...</div>
+            </div>
+            <div class="vs-badge">VS</div>
+            <div class="player opponent">
+                <div class="player-avatar">👤</div>
+                <div class="player-info">
+                    <span class="player-name" id="opponentName">Opponent</span>
+                    <span class="player-elo">⭐ 1180 ELO</span>
+                </div>
+                <div class="player-status" id="opponentStatus">🟡 Coding...</div>
+            </div>
+        </div>
+
+        <!-- MAIN BATTLE AREA -->
+        <div class="battle-area">
+
+            <!-- LEFT: PROBLEM -->
+            <div class="problem-panel">
+                <div class="panel-header">
+                    <span>📋 Problem</span>
+                    <span class="difficulty-badge" id="problemDifficulty">Easy</span>
+                </div>
+                <div class="problem-content">
+                    <h2 id="problemTitle">Two Sum</h2>
+                    <p id="problemDesc">Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.</p>
+                    <div class="example-box">
+                        <p><strong>Example:</strong></p>
+                        <code>Input: nums = [2,7,11,15], target = 9</code>
+                        <code>Output: [0,1]</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: CODE EDITOR -->
+            <div class="code-panel">
+                <div class="panel-header">
+                    <span>💻 Your Code</span>
+                    <select class="lang-select" id="langSelect">
+                        <option>Python</option>
+                        <option>JavaScript</option>
+                        <option>C++</option>
+                    </select>
+                </div>
+                <textarea class="code-editor" id="codeEditor" spellcheck="false">def solution(nums, target):
+    # Write your code here
+    pass</textarea>
+                <div class="code-actions">
+                    <button class="run-btn" id="runBtn">▶ Run Code</button>
+                    <button class="submit-btn" id="submitBtn">✅ Submit</button>
+                </div>
+                <div class="output-box" id="outputBox">
+                    <span class="output-text">Output will appear here...</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div class="screen hidden" id="resultScreen">
+        <div class="result-container">
+            <div class="result-icon" id="resultIcon">🏆</div>
+            <h1 class="result-title" id="resultTitle">You Won!</h1>
+            <div class="elo-change" id="eloChange">+25 ELO</div>
+
+            <div class="scores-grid">
+                <div class="score-card">
+                    <div class="score-icon">⚡</div>
+                    <div class="score-label">Speed</div>
+                    <div class="score-value" id="speedScore">85</div>
+                </div>
+                <div class="score-card">
+                    <div class="score-icon">🧮</div>
+                    <div class="score-label">Complexity</div>
+                    <div class="score-value" id="complexityScore">70</div>
+                </div>
+                <div class="score-card">
+                    <div class="score-icon">✅</div>
+                    <div class="score-label">Quality</div>
+                    <div class="score-value" id="qualityScore">90</div>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button class="play-again-btn" id="playAgainBtn">⚔️ Play Again</button>
+                <button class="home-btn" id="homeBtn">🏟️ Back to Lobby</button>
+            </div>
+
+            <!-- HISTORY -->
+            <div class="history-section">
+                <h3>📜 Match History</h3>
+                <div class="history-list" id="historyList">
+                    <div class="history-item win">
+                        <span>⚔️ vs Player123</span>
+                        <span class="result-badge win">WIN</span>
+                        <span>+25 ELO</span>
+                    </div>
+                    <div class="history-item loss">
+                        <span>⚔️ vs CoderX</span>
+                        <span class="result-badge loss">LOSS</span>
+                        <span>-20 ELO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../scripts/pvp.js"></script>
+</body>
+</html>

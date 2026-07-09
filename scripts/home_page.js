@@ -129,3 +129,12 @@ loadProjects();
 
 // Also click the add-new card
 document.getElementById('add-new-card').addEventListener('click', showNewProjectModal);
+
+document.querySelectorAll('.action-btn')[1].addEventListener('click', () => {
+    window.location.href = '../pages/pvp_lobby.html'
+})
+
+// Practice button
+document.querySelectorAll('.action-btn')[2].addEventListener('click', () => {
+    alert('Practice coming soon!')
+})

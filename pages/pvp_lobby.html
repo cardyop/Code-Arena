@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeArena - 1v1 Battle Room</title>
+    <link rel="stylesheet" href="../styles/pvp_lobby.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <button class="back-btn" id="backBtn">← Home</button>
+        <div class="title">⚔️ 1v1 Battle Room</div>
+        <div></div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <!-- TOP ROW: Start PVP + Stats -->
+        <div class="top-row">
+
+            <!-- START PVP BUTTON -->
+            <div class="start-pvp-card" id="startPvpBtn">
+                <div class="start-icon">⚔️</div>
+                <div class="start-label">Start PVP</div>
+            </div>
+
+            <!-- BEST TIME STAT -->
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-label">Best Time</div>
+                <div class="stat-value" id="bestTime">--:--</div>
+            </div>
+
+            <!-- BEST SPACE COMPLEXITY -->
+            <div class="stat-card">
+                <div class="stat-icon">🧮</div>
+                <div class="stat-label">Best Space. C</div>
+                <div class="stat-value" id="bestSpace">O(n)</div>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM ROW: History + Rating -->
+        <div class="bottom-row">
+
+            <!-- HISTORY -->
+            <div class="panel" id="historyPanel">
+                <div class="panel-header">📜 History</div>
+                <div class="panel-content" id="historyList">
+                    <div class="empty-state">No matches yet. Start your first PVP!</div>
+                </div>
+            </div>
+
+            <!-- RATING -->
+            <div class="panel" id="ratingPanel">
+                <div class="panel-header">🏆 Rating</div>
+                <div class="panel-content">
+                    <div class="elo-display">
+                        <div class="elo-number" id="eloNumber">1200</div>
+                        <div class="elo-label">ELO Rating</div>
+                    </div>
+                    <div class="rank-badge" id="rankBadge">🥉 Bronze</div>
+                    <div class="rank-progress">
+                        <div class="rank-bar">
+                            <div class="rank-fill" id="rankFill" style="width: 40%"></div>
+                        </div>
+                        <div class="rank-labels">
+                            <span>Bronze</span>
+                            <span>Silver (1500)</span>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="mini-stat">
+                            <div class="mini-value" id="totalWins">0</div>
+                            <div class="mini-label">Wins</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-value" id="totalLosses">0</div>
+                            <div class="mini-label">Losses</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-value" id="winRate">0%</div>
+                            <div class="mini-label">Win Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../scripts/pvp_lobby.js"></script>
+</body>
+</html>
