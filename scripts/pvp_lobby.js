@@ -1,11 +1,11 @@
 // Load stats from localStorage
 function loadStats() {
-    const history = JSON.parse(localStorage.getItem('pvp_history') || '[]')
-    const elo = parseInt(localStorage.getItem('pvp_elo') || '1200')
-    const wins = parseInt(localStorage.getItem('pvp_wins') || '0')
-    const losses = parseInt(localStorage.getItem('pvp_losses') || '0')
-    const bestTime = localStorage.getItem('pvp_best_time') || '--:--'
-    const bestSpace = localStorage.getItem('pvp_best_space') || 'O(n)'
+    const history = db.getPvpHistory()
+    const elo = db.getElo()
+    const wins = db.getWins()
+    const losses = db.getLosses()
+    const bestTime = db.getBestTime()
+    const bestSpace = 'O(n)'
 
     // ELO
     document.getElementById('eloNumber').textContent = elo

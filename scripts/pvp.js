@@ -77,37 +77,30 @@ function showResult(won) {
     document.getElementById('complexityScore').textContent = complexityScore
     document.getElementById('qualityScore').textContent = qualityScore
 
-    // Save to localStorage
-    const history = JSON.parse(localStorage.getItem('pvp_history') || '[]')
-    history.unshift({
-        opponent: opponent,
-        result: won ? 'win' : 'loss',
-        time: timeTaken,
-        speed: speedScore,
-        complexity: complexityScore,
-        quality: qualityScore,
-        date: new Date().toLocaleDateString()
-    })
-    localStorage.setItem('pvp_history', JSON.stringify(history))
+    // Save match
+db.savePvpMatch({
+    opponent: opponent,
+    result: won ? 'win' : 'loss',
+    time: timeTaken,
+    speed: speedScore,
+    complexity: complexityScore,
+    quality: qualityScore,
+    date: new Date().toLocaleDateString()
+})
 
-    // Update ELO
-    let elo = parseInt(localStorage.getItem('pvp_elo') || '1200')
-    elo = won ? elo + 25 : elo - 20
-    localStorage.setItem('pvp_elo', elo)
+// Update ELO
+let elo = db.getElo()
+elo = won ? elo + 25 : elo - 20
+db.setElo(elo)
 
-    // Update wins/losses
-    let wins = parseInt(localStorage.getItem('pvp_wins') || '0')
-    let losses = parseInt(localStorage.getItem('pvp_losses') || '0')
-    if (won) wins++ 
-    else losses++
-    localStorage.setItem('pvp_wins', wins)
-    localStorage.setItem('pvp_losses', losses)
+// Update wins/losses
+if (won) db.addWin()
+else db.addLoss()
 
-    // Update best time
-    const bestTime = localStorage.getItem('pvp_best_time')
-    if (won && (!bestTime || timeTaken < bestTime)) {
-        localStorage.setItem('pvp_best_time', timeTaken)
-    }
+// Update best time
+if (won && (db.getBestTime() === '--:--' || timeTaken < db.getBestTime())) {
+    db.setBestTime(timeTaken)
+}
 }
 
 // PLAY AGAIN
