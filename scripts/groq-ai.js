@@ -1,7 +1,7 @@
 const Groq = require('groq-sdk')
 
 const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
+    apiKey:'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',
     dangerouslyAllowBrowser: true
 })
 
@@ -33,4 +33,3 @@ async function generateQuestion(level = 'beginner') {
         return null
     }
 }
-require('dotenv').config()
