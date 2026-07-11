@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeArena - Editor</title>
+    <link rel="stylesheet" href="../styles/editor_main.css">
+    <script src="../scripts/db.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="tabs">
+            <div class="tab active" id="currentTab">
+                <span class="tab-icon">📄</span>
+                <span class="tab-name" id="tabName">main.py</span>
+                <span class="tab-close">●</span>
+            </div>
+        </div>
+        <div class="top-actions">
+            <button class="run-btn" id="runBtn">▶ Run</button>
+        </div>
+    </div>
+
+    <!-- MAIN AREA -->
+    <div class="main-container">
+
+        <!-- LEFT ICON BAR -->
+        <div class="icon-bar">
+            <div class="icon-btn active" id="iconFiles" title="Files">📁</div>
+            <div class="icon-btn" id="iconSearch" title="Search">🔍</div>
+            <div class="icon-btn" id="iconExtensions" title="Extensions">🧩</div>
+            <div class="spacer"></div>
+            <div class="icon-btn" id="iconSave" title="Save">💾</div>
+        </div>
+
+        <!-- LEFT PANEL -->
+        <div class="left-panel" id="leftPanel">
+
+            <!-- FILES -->
+            <div class="panel-section" id="filesPanel">
+                <div class="panel-header">
+                    <span>EXPLORER</span>
+                    <span class="panel-close" id="closePanel">✕</span>
+                </div>
+                <div class="file-tree" id="fileTree">
+                    <div class="folder">
+                        <span class="folder-name">📂 <span id="projectName">Project</span></span>
+                        <div class="folder-contents" id="folderContents">
+                            <div class="file active">📄 main.py</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="new-file-btn" id="newFileBtn">+ New File</button>
+            </div>
+
+            <!-- SEARCH -->
+            <div class="panel-section hidden" id="searchPanel">
+                <div class="panel-header">
+                    <span>SEARCH</span>
+                    <span class="panel-close" id="closeSearch">✕</span>
+                </div>
+                <input type="text" class="search-input" placeholder="Search in files..." id="searchInput"/>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+
+            <!-- EXTENSIONS -->
+            <div class="panel-section hidden" id="extensionsPanel">
+                <div class="panel-header">
+                    <span>EXTENSIONS</span>
+                    <span class="panel-close" id="closeExtensions">✕</span>
+                </div>
+                <div class="extension-item">🐍 Python Support</div>
+                <div class="extension-item">🌐 JavaScript Support</div>
+                <div class="extension-item">⚡ C++ Support</div>
+            </div>
+
+        </div>
+
+        <!-- EDITOR + OUTPUT -->
+        <div class="editor-container">
+
+            <!-- CODE EDITOR -->
+            <div class="code-area">
+                <div class="line-numbers" id="lineNumbers">
+                    <div>1</div>
+                </div>
+                <textarea 
+                    class="code-editor" 
+                    id="codeEditor" 
+                    spellcheck="false"
+                    placeholder="Write your code here..."
+                ># Welcome to CodeArena
+# Write your code here
+
+def greet(name):
+    return f'Hello, {name}!'
+
+print(greet('CodeArena'))</textarea>
+            </div>
+
+            <!-- OUTPUT PANEL -->
+            <div class="output-panel">
+                <div class="output-tabs">
+                    <span class="output-tab active" data-tab="output">📟 OUTPUT</span>
+                    <span class="output-tab" data-tab="terminal">> TERMINAL</span>
+                    <span class="output-tab" data-tab="problems">⚡ PROBLEMS</span>
+                </div>
+                <div class="output-content" id="outputContent">
+                    <div class="output-text">Ready to run code...</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="right-sidebar">
+            <div class="right-section">
+                <div class="lang-selector">
+                    <div class="right-label">Language</div>
+                    <select class="lang-select" id="langSelect">
+                        <option value="python">🐍 Python</option>
+                        <option value="javascript">🌐 JavaScript</option>
+                        <option value="cpp">⚡ C++</option>
+                        <option value="java">☕ Java</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="right-label">Mode</div>
+                <div class="mode-btn active" id="editorMode">📝 Editor</div>
+                <div class="mode-btn" id="pvpMode">⚔️ 1v1 Mode</div>
+            </div>
+
+            <div class="right-section">
+                <div class="right-label">Timer</div>
+                <div class="timer-display" id="timerDisplay">00:00</div>
+                <button class="timer-btn" id="timerStartBtn">▶ Start</button>
+                <button class="timer-btn stop hidden" id="timerStopBtn">⏹ Stop</button>
+            </div>
+
+            <div class="right-section bottom-section">
+                <div class="nav-btn" id="navHome">🏠 Home</div>
+                <div class="nav-btn" id="navPvp">⚔️ 1v1 Lobby</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span id="statusLang">🐍 Python</span>
+            <span id="statusProject">📁 Project</span>
+        </div>
+        <div class="status-right">
+            <span id="statusCursor">Ln 1, Col 1</span>
+            <span>UTF-8</span>
+        </div>
+    </div>
+
+</div>
+
+<script src="../scripts/editor_main.js"></script>
+</body>
+</html>

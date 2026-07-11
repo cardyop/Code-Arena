@@ -77,8 +77,8 @@ function showResult(won) {
     document.getElementById('complexityScore').textContent = complexityScore
     document.getElementById('qualityScore').textContent = qualityScore
 
-    // Save match
-db.savePvpMatch({
+ // Save match
+    db.savePvpMatch({
     opponent: opponent,
     result: won ? 'win' : 'loss',
     time: timeTaken,
@@ -89,13 +89,13 @@ db.savePvpMatch({
 })
 
 // Update ELO
-let elo = db.getElo()
-elo = won ? elo + 25 : elo - 20
-db.setElo(elo)
+    let elo = db.getElo()
+    elo = won ? elo + 25 : elo - 20
+      db.setElo(elo)
 
 // Update wins/losses
-if (won) db.addWin()
-else db.addLoss()
+   if (won) db.addWin()
+   else db.addLoss()
 
 // Update best time
 if (won && (db.getBestTime() === '--:--' || timeTaken < db.getBestTime())) {
