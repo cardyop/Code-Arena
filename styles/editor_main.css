@@ -23,20 +23,6 @@ body {
 
 .tabs { display: flex; gap: 4px; }
 
-.tab {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    background: #1E1E2E;
-    border-bottom: 2px solid transparent;
-    font-size: 13px;
-    cursor: pointer;
-    border-radius: 4px 4px 0 0;
-}
-
-.tab.active { border-bottom-color: #6366F1; color: #fff; }
-.tab-close { color: #A5A8FF; font-size: 12px; }
 
 .run-btn {
     background: linear-gradient(135deg, #22C55E, #16A34A);
@@ -369,3 +355,29 @@ body {
 }
 
 .status-left, .status-right { display: flex; gap: 16px; }
+/* FILE TABS BAR */
+.file-tabs-bar {
+    display: flex;
+    background: #1E1E2E;
+    border-bottom: 1px solid rgba(99,102,241,0.2);
+    padding: 0 4px;
+}
+
+.file-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    color: #aaa;
+}
+
+.file-tab.active {
+    border-bottom-color: #6366F1;
+    color: #fff;
+    background: rgba(99,102,241,0.1);
+}
+
+.tab-dot { color: #A5A8FF; font-size: 10px; }

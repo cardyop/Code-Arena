@@ -1,53 +1,27 @@
-// Sample questions pool
-const questions = [
-    {
-        question: "What does a loop do in programming?",
-        options: [
-            "It stores data in memory",
-            "It repeats a block of code multiple times",
-            "It connects to the internet",
-            "It deletes files from disk"
-        ],
-        correct: "B",
-        difficulty: "Easy"
-    },
-    {
-        question: "What is a variable in coding?",
-        options: [
-            "A type of loop",
-            "A function that runs code",
-            "A container that stores data",
-            "A way to connect to internet"
-        ],
-        correct: "C",
-        difficulty: "Easy"
-    },
-    {
-        question: "What does an IF statement do?",
-        options: [
-            "Repeats code forever",
-            "Makes a decision based on a condition",
-            "Stores a number",
-            "Deletes a variable"
-        ],
-        correct: "B",
-        difficulty: "Easy"
-    },
-    {
-        question: "What is a function in programming?",
-        options: [
-            "A bug in the code",
-            "A type of variable",
-            "A reusable block of code",
-            "A way to style text"
-        ],
-        correct: "C",
-        difficulty: "Medium"
-    }
-];
+let currentQuestion = null
+let selectedOption = null
 
-let currentQuestion = 0;
-let selectedOption = null;
+async function fetchQuestion() {
+    try {
+        const q = await generateQuestion('beginner')
+        currentQuestion = q
+        loadQuestion()
+    } catch (err) {
+        // fallback question if API fails
+        currentQuestion = {
+            question: "What does a loop do in programming?",
+            options: [
+                "It stores data in memory",
+                "It repeats a block of code multiple times",
+                "It connects to the internet",
+                "It deletes files from disk"
+            ],
+            correct: "B",
+            difficulty: "Easy"
+        }
+        loadQuestion()
+    }
+}
 
 // Set greeting based on time
 function setGreeting() {
@@ -92,23 +66,22 @@ function setGreeting() {
     }, 2000);
 }
 
-// Load question
 function loadQuestion() {
-    const q = questions[currentQuestion];
-    document.getElementById('questionText').textContent = q.question;
-    document.getElementById('difficulty').textContent = q.difficulty;
-    
-    const options = document.querySelectorAll('.option');
+    if (!currentQuestion) return
+    document.getElementById('questionText').textContent = currentQuestion.question
+    document.getElementById('difficulty').textContent = currentQuestion.difficulty
+
+    const options = document.querySelectorAll('.option')
     options.forEach((option, index) => {
-        const letter = String.fromCharCode(65 + index); // A, B, C, D
-        option.setAttribute('data-option', letter);
-        option.querySelector('.option-text').textContent = q.options[index];
-        option.classList.remove('selected', 'correct', 'wrong');
-    });
-    
-    selectedOption = null;
-    document.getElementById('feedback').textContent = '';
-    document.getElementById('feedback').className = 'feedback';
+        const letter = String.fromCharCode(65 + index)
+        option.setAttribute('data-option', letter)
+        option.querySelector('.option-text').textContent = currentQuestion.options[index]
+        option.classList.remove('selected', 'correct', 'wrong')
+    })
+
+    selectedOption = null
+    document.getElementById('feedback').textContent = ''
+    document.getElementById('feedback').className = 'feedback'
 }
 
 // Handle option click
@@ -132,7 +105,7 @@ document.getElementById('submitBtn').addEventListener('click', function() {
         return;
     }
     
-    const q = questions[currentQuestion];
+    const q = currentQuestion
     const selectedEl = document.querySelector(`[data-option="${selectedOption}"]`);
     const correctEl = document.querySelector(`[data-option="${q.correct}"]`);
     
@@ -162,15 +135,13 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     }
 });
 
-// Handle hint button
-document.getElementById('hintBtn').addEventListener('click', function() {
-    currentQuestion = (currentQuestion + 1) % questions.length;
-    loadQuestion();
-    const feedback = document.getElementById('feedback');
-    feedback.textContent = '🔄 Question changed! Answer to unlock!';
-    feedback.className = 'feedback';
-});
+document.getElementById('hintBtn').addEventListener('click', async function() {
+    const feedback = document.getElementById('feedback')
+    feedback.textContent = '🔄 Getting new question...'
+    feedback.className = 'feedback'
+    await fetchQuestion()
+})
 
 // Initialize
-setGreeting();
-loadQuestion();
+setGreeting()
+fetchQuestion()

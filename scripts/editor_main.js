@@ -73,16 +73,7 @@ function updateCursor() {
     document.getElementById('statusCursor').textContent = `Ln ${line}, Col ${col}`
 }
 
-// LANGUAGE SELECTOR
-document.getElementById('langSelect').addEventListener('change', function() {
-    const langMap = {
-        python: '🐍 Python',
-        javascript: '🌐 JavaScript',
-        cpp: '⚡ C++',
-        java: '☕ Java'
-    }
-    document.getElementById('statusLang').textContent = langMap[this.value]
-})
+
 
 // SAVE CODE
 function saveCode() {
@@ -110,24 +101,6 @@ document.getElementById('runBtn').addEventListener('click', () => {
     document.getElementById('outputContent').innerHTML = 
         '<span style="color:#22C55E">▶ Running...</span><br><span style="color:#ccc">Hello, CodeArena!</span>'
 })
-
-// TIMER
-let timerInterval = null
-let timerSeconds = 0
-let timerRunning = false
-
-document.getElementById('timerStartBtn').addEventListener('click', () => {
-    timerRunning = true
-    document.getElementById('timerStartBtn').classList.add('hidden')
-    document.getElementById('timerStopBtn').classList.remove('hidden')
-    timerInterval = setInterval(() => {
-        timerSeconds++
-        const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0')
-        const secs = (timerSeconds % 60).toString().padStart(2, '0')
-        document.getElementById('timerDisplay').textContent = `${mins}:${secs}`
-    }, 1000)
-})
-
 document.getElementById('timerStopBtn').addEventListener('click', () => {
     clearInterval(timerInterval)
     timerRunning = false

@@ -12,18 +12,11 @@
 <div class="app">
 
     <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="tabs">
-            <div class="tab active" id="currentTab">
-                <span class="tab-icon">📄</span>
-                <span class="tab-name" id="tabName">main.py</span>
-                <span class="tab-close">●</span>
-            </div>
-        </div>
-        <div class="top-actions">
-            <button class="run-btn" id="runBtn">▶ Run</button>
-        </div>
+<div class="top-bar">
+    <div class="top-actions">
+        <button class="run-btn" id="runBtn">▶ Run</button>
     </div>
+</div>
 
     <!-- MAIN AREA -->
     <div class="main-container">
@@ -81,10 +74,20 @@
         </div>
 
         <!-- EDITOR + OUTPUT -->
-        <div class="editor-container">
+        <!-- EDITOR + OUTPUT -->
+<div class="editor-container">
 
-            <!-- CODE EDITOR -->
-            <div class="code-area">
+    <!-- FILE TAB -->
+    <div class="file-tabs-bar">
+        <div class="file-tab active" id="currentTab">
+            <span>📄</span>
+            <span id="tabName">main.py</span>
+            <span class="tab-dot">●</span>
+        </div>
+    </div>
+
+    <!-- CODE EDITOR -->
+    <div class="code-area">
                 <div class="line-numbers" id="lineNumbers">
                     <div>1</div>
                 </div>
@@ -118,17 +121,7 @@ print(greet('CodeArena'))</textarea>
 
         <!-- RIGHT SIDEBAR -->
         <div class="right-sidebar">
-            <div class="right-section">
-                <div class="lang-selector">
-                    <div class="right-label">Language</div>
-                    <select class="lang-select" id="langSelect">
-                        <option value="python">🐍 Python</option>
-                        <option value="javascript">🌐 JavaScript</option>
-                        <option value="cpp">⚡ C++</option>
-                        <option value="java">☕ Java</option>
-                    </select>
-                </div>
-            </div>
+            
 
             <div class="right-section">
                 <div class="right-label">Mode</div>
@@ -136,12 +129,6 @@ print(greet('CodeArena'))</textarea>
                 <div class="mode-btn" id="pvpMode">⚔️ 1v1 Mode</div>
             </div>
 
-            <div class="right-section">
-                <div class="right-label">Timer</div>
-                <div class="timer-display" id="timerDisplay">00:00</div>
-                <button class="timer-btn" id="timerStartBtn">▶ Start</button>
-                <button class="timer-btn stop hidden" id="timerStopBtn">⏹ Stop</button>
-            </div>
 
             <div class="right-section bottom-section">
                 <div class="nav-btn" id="navHome">🏠 Home</div>
