@@ -2,3 +2,5 @@ node_modules/
 .vscode/
 *.logz
 .env
+.env
+scripts/groq-ai.js
