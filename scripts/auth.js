@@ -33,7 +33,7 @@ document.getElementById('loginBtn').addEventListener('click', () => {
         feedback.textContent = '✅ Login successful!'
         feedback.className = 'feedback success'
         setTimeout(() => {
-            window.location.href = '../pages/gatekeeper.html'
+            window.location.href = 'gatekeeper.html'
         }, 1000)
     } else {
         feedback.textContent = '❌ Invalid email or password!'
@@ -95,7 +95,7 @@ document.getElementById('gmailBtn').addEventListener('click', () => {
 })
 
 // CHECK IF ALREADY LOGGED IN
-const user = JSON.parse(localStorage.getItem('ca_user') || 'null')
-if (user) {
-    window.location.href = '../pages/gatekeeper.html'
+const remembered = localStorage.getItem('ca_remember')
+if (remembered === 'true') {
+    window.location.href = 'gatekeeper.html'
 }
