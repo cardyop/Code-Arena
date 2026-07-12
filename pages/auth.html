@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeArena - Login</title>
+    <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- LEFT SIDE -->
+    <div class="left-side">
+        <div class="brand">
+            <span class="brand-icon">🚀</span>
+            <span class="brand-name">CodeArena</span>
+        </div>
+        <h1 class="tagline">Learn. Compete.<br>Never Forget.</h1>
+        <p class="sub-tagline">Join thousands of coders leveling up every day</p>
+        <div class="features">
+            <div class="feature-item">🔐 GateKeeper keeps you accountable</div>
+            <div class="feature-item">⚔️ 1v1 battles to sharpen your skills</div>
+            <div class="feature-item">🤖 AI mentor that never gives away answers</div>
+            <div class="feature-item">🏆 ELO ranking to track your growth</div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-side">
+        <div class="auth-card">
+
+            <!-- TABS -->
+            <div class="tabs">
+                <div class="tab active" id="loginTab">Login</div>
+                <div class="tab" id="signupTab">Sign Up</div>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div class="form" id="loginForm">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter your email" id="loginEmail"/>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password" id="loginPassword"/>
+                </div>
+                <div class="remember-row">
+                    <label class="remember-label">
+                        <input type="checkbox" id="rememberMe"/>
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                <button class="auth-btn primary" id="loginBtn">Login →</button>
+            </div>
+
+            <!-- SIGNUP FORM -->
+            <div class="form hidden" id="signupForm">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Choose a username" id="signupUsername"/>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter your email" id="signupEmail"/>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create a password" id="signupPassword"/>
+                </div>
+                <button class="auth-btn primary" id="signupBtn">Create Account →</button>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <!-- SOCIAL BUTTONS -->
+            <div class="social-buttons">
+                <button class="social-btn" id="googleBtn">
+                    <span>🌐</span> Google
+                </button>
+                <button class="social-btn" id="githubBtn">
+                    <span>🐙</span> GitHub
+                </button>
+                <button class="social-btn" id="gmailBtn">
+                    <span>📧</span> Gmail
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="../scripts/auth.js"></script>
+</body>
+</html>

@@ -13,7 +13,7 @@ function createWindow() {
     })
     win.setMenu(null)
     win.webContents.openDevTools()
-    win.loadFile('pages/gatekeeper.html')
+    win.loadFile('pages/auth.html')
 }
 
 app.whenReady().then(createWindow)
