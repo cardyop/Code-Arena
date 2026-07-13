@@ -32,8 +32,8 @@ document.getElementById('loginBtn').addEventListener('click', () => {
         localStorage.setItem('ca_user', JSON.stringify(user))
         feedback.textContent = '✅ Login successful!'
         feedback.className = 'feedback success'
-        ssetTimeout(() => {
-    window.location.href = 'gatekeeper.html'
+       setTimeout(() => {
+    window.location.href = '../pages/gatekeeper.html'
 }, 1000)
     } else {
         feedback.textContent = '❌ Invalid email or password!'

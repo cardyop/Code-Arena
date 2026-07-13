@@ -123,14 +123,6 @@ document.getElementById('pvpMode').addEventListener('click', () => {
     window.location.href = '../pages/pvp_lobby.html'
 })
 
-// NAVIGATION
-document.getElementById('navHome').addEventListener('click', () => {
-    window.location.href = '../pages/home_page.html'
-})
-
-document.getElementById('navPvp').addEventListener('click', () => {
-    window.location.href = '../pages/pvp_lobby.html'
-})
 
 // NEW FILE
 document.getElementById('newFileBtn').addEventListener('click', () => {
