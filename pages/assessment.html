@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeArena - Assessment</title>
+    <link rel="stylesheet" href="../styles/assessment.css">
+    <script src="../scripts/groq-ai.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="logo">🚀 CodeArena</div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text" id="progressText">Question 1 of 10</span>
+        </div>
+        <div class="level-indicator" id="levelIndicator">🟢 Beginner</div>
+    </div>
+
+    <!-- LOADING SCREEN -->
+    <div class="screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-icon">🤖</div>
+            <h2>Generating your question...</h2>
+            <p>Our AI is crafting a question just for you</p>
+            <div class="dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUESTION SCREEN -->
+    <div class="screen hidden" id="questionScreen">
+        <div class="question-container">
+
+            <div class="question-meta">
+                <span class="difficulty-badge" id="difficultyBadge">Beginner</span>
+                <span class="topic-badge" id="topicBadge">Programming Basics</span>
+            </div>
+
+            <h2 class="question-text" id="questionText"></h2>
+
+            <div class="options-container" id="optionsContainer">
+                <div class="option" data-option="A">
+                    <div class="option-letter">A</div>
+                    <div class="option-text" id="optA"></div>
+                </div>
+                <div class="option" data-option="B">
+                    <div class="option-letter">B</div>
+                    <div class="option-text" id="optB"></div>
+                </div>
+                <div class="option" data-option="C">
+                    <div class="option-letter">C</div>
+                    <div class="option-text" id="optC"></div>
+                </div>
+                <div class="option" data-option="D">
+                    <div class="option-letter">D</div>
+                    <div class="option-text" id="optD"></div>
+                </div>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <button class="next-btn hidden" id="nextBtn">
+                Next Question →
+            </button>
+
+        </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div class="screen hidden" id="resultScreen">
+        <div class="result-container">
+            <div class="result-icon" id="resultIcon">🏆</div>
+            <h1 class="result-title">Assessment Complete!</h1>
+            <div class="result-level" id="resultLevel">🟢 Beginner</div>
+            <p class="result-desc" id="resultDesc"></p>
+
+            <div class="score-display">
+                <div class="score-number" id="scoreNumber">0/10</div>
+                <div class="score-label">Questions Correct</div>
+            </div>
+
+            <div class="breakdown">
+                <div class="breakdown-item">
+                    <span>🟢 Beginner</span>
+                    <span id="beginnerScore">0/3</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🟡 Intermediate</span>
+                    <span id="intermediateScore">0/3</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🔴 Advanced</span>
+                    <span id="advancedScore">0/3</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>🏆 Expert</span>
+                    <span id="expertScore">0/1</span>
+                </div>
+            </div>
+
+            <button class="start-btn" id="startBtn">
+                🚀 Start CodeArena
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script src="../scripts/assessment.js"></script>
+</body>
+</html>

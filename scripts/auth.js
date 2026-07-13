@@ -32,9 +32,9 @@ document.getElementById('loginBtn').addEventListener('click', () => {
         localStorage.setItem('ca_user', JSON.stringify(user))
         feedback.textContent = '✅ Login successful!'
         feedback.className = 'feedback success'
-        setTimeout(() => {
-            window.location.href = 'gatekeeper.html'
-        }, 1000)
+        ssetTimeout(() => {
+    window.location.href = 'gatekeeper.html'
+}, 1000)
     } else {
         feedback.textContent = '❌ Invalid email or password!'
         feedback.className = 'feedback error'
@@ -71,7 +71,9 @@ document.getElementById('signupBtn').addEventListener('click', () => {
     feedback.textContent = '✅ Account created!'
     feedback.className = 'feedback success'
     setTimeout(() => {
-        window.location.href = '../pages/gatekeeper.html'
+        setTimeout(() => {
+    window.location.href = 'assessment.html'
+}, 1000)
     }, 1000)
 })
 
