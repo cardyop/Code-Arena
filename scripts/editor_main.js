@@ -116,14 +116,7 @@ document.querySelectorAll('.output-tab').forEach(tab => {
         document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'))
         this.classList.add('active')
     })
-})
-
-// 1V1 MODE
-document.getElementById('pvpMode').addEventListener('click', () => {
-    window.location.href = '../pages/pvp_lobby.html'
-})
-
-
+}) 
 // NEW FILE
 document.getElementById('newFileBtn').addEventListener('click', () => {
     const name = prompt('Enter file name:')
