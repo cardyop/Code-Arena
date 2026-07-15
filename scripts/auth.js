@@ -77,17 +77,16 @@ document.getElementById('signupBtn').addEventListener('click', () => {
     }, 1000)
 })
 
-// SOCIAL BUTTONS (UI only for now)
 document.getElementById('googleBtn').addEventListener('click', () => {
-    const feedback = document.getElementById('feedback')
-    feedback.textContent = '🔄 Google login coming soon!'
-    feedback.className = 'feedback'
+    const { shell } = require('electron')
+    shell.openExternal('http://localhost:3000/auth/google')
+    startPolling()
 })
 
 document.getElementById('githubBtn').addEventListener('click', () => {
-    const feedback = document.getElementById('feedback')
-    feedback.textContent = '🔄 GitHub login coming soon!'
-    feedback.className = 'feedback'
+    const { shell } = require('electron')
+    shell.openExternal('http://localhost:3000/auth/github')
+    startPolling()
 })
 
 document.getElementById('gmailBtn').addEventListener('click', () => {
@@ -100,4 +99,41 @@ document.getElementById('gmailBtn').addEventListener('click', () => {
 const remembered = localStorage.getItem('ca_remember')
 if (remembered === 'true') {
     window.location.href = 'gatekeeper.html'
+}
+// POLLING — checks backend every second for logged in user
+function startPolling() {
+    const feedback = document.getElementById('feedback')
+    feedback.textContent = '🔄 Waiting for login...'
+    feedback.className = 'feedback'
+
+    const interval = setInterval(async () => {
+        try {
+            const response = await fetch('http://localhost:3000/auth/pending')
+            const data = await response.json()
+
+            if (data && data.user) {
+                clearInterval(interval)
+                
+                // Save user to localStorage
+                localStorage.setItem('ca_user', JSON.stringify(data.user))
+                localStorage.setItem('ca_token', data.token)
+
+                feedback.textContent = '✅ Login successful!'
+                feedback.className = 'feedback success'
+
+                setTimeout(() => {
+                    window.location.href = '../pages/gatekeeper.html'
+                }, 1000)
+            }
+        } catch (err) {
+            console.log('Polling error:', err)
+        }
+    }, 1000) // check every second
+
+    // Stop polling after 2 minutes
+    setTimeout(() => {
+        clearInterval(interval)
+        feedback.textContent = '❌ Login timed out. Try again!'
+        feedback.className = 'feedback error'
+    }, 120000)
 }
