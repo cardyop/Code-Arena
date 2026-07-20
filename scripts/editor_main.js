@@ -47,46 +47,12 @@ document.getElementById('closePanel').addEventListener('click', () => {
     iconBtns.forEach(b => b.classList.remove('active'))
 })
 
-// LINE NUMBERS
-const codeEditor = document.getElementById('codeEditor')
-const lineNumbers = document.getElementById('lineNumbers')
 
-function updateLineNumbers() {
-    const lines = codeEditor.value.split('\n').length
-    lineNumbers.innerHTML = Array.from({length: lines}, (_, i) => `<div>${i + 1}</div>`).join('')
-}
-
-codeEditor.addEventListener('input', updateLineNumbers)
-codeEditor.addEventListener('scroll', () => {
-    lineNumbers.scrollTop = codeEditor.scrollTop
-})
-
-// CURSOR POSITION
-codeEditor.addEventListener('keyup', updateCursor)
-codeEditor.addEventListener('click', updateCursor)
-
-function updateCursor() {
-    const text = codeEditor.value.substring(0, codeEditor.selectionStart)
-    const lines = text.split('\n')
-    const line = lines.length
-    const col = lines[lines.length - 1].length + 1
-    document.getElementById('statusCursor').textContent = `Ln ${line}, Col ${col}`
-}
-
-
-
-// SAVE CODE
 function saveCode() {
-    const code = codeEditor.value
-    localStorage.setItem('code_' + projectName, code)
-    document.querySelector('.tab-close').textContent = '✓'
-    setTimeout(() => document.querySelector('.tab-close').textContent = '●', 1500)
+    if (window.editor) {
+        localStorage.setItem('code_' + projectName, window.editor.getValue())
+    }
 }
-
-// LOAD SAVED CODE
-const savedCode = localStorage.getItem('code_' + projectName)
-if (savedCode) codeEditor.value = savedCode
-updateLineNumbers()
 
 // AUTO SAVE on Ctrl+S
 document.addEventListener('keydown', (e) => {
@@ -101,15 +67,6 @@ document.getElementById('runBtn').addEventListener('click', () => {
     document.getElementById('outputContent').innerHTML = 
         '<span style="color:#22C55E">▶ Running...</span><br><span style="color:#ccc">Hello, CodeArena!</span>'
 })
-document.getElementById('timerStopBtn').addEventListener('click', () => {
-    clearInterval(timerInterval)
-    timerRunning = false
-    timerSeconds = 0
-    document.getElementById('timerDisplay').textContent = '00:00'
-    document.getElementById('timerStartBtn').classList.remove('hidden')
-    document.getElementById('timerStopBtn').classList.add('hidden')
-})
-
 // OUTPUT TABS
 document.querySelectorAll('.output-tab').forEach(tab => {
     tab.addEventListener('click', function() {
