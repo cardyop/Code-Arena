@@ -63,18 +63,25 @@ document.getElementById('signupBtn').addEventListener('click', () => {
         return
     }
 
-    const newUser = { username, email, password, level: 'beginner', elo: 1200 }
-    users.push(newUser)
-    localStorage.setItem('ca_users', JSON.stringify(users))
-    localStorage.setItem('ca_user', JSON.stringify(newUser))
+    const newUser = { username, email, password, level: 'beginner', elo: 1200, assessmentDone: false }
+
+// Save to localStorage
+users.push(newUser)
+localStorage.setItem('ca_users', JSON.stringify(users))
+localStorage.setItem('ca_user', JSON.stringify(newUser))
+
+// Save to backend SQLite
+fetch('http://localhost:3000/auth/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newUser)
+}).catch(err => console.log('Backend save error:', err))
 
     feedback.textContent = '✅ Account created!'
     feedback.className = 'feedback success'
     setTimeout(() => {
-        setTimeout(() => {
     window.location.href = 'assessment.html'
 }, 1000)
-    }, 1000)
 })
 
 document.getElementById('googleBtn').addEventListener('click', () => {
@@ -112,19 +119,43 @@ function startPolling() {
             const data = await response.json()
 
             if (data && data.user) {
-                clearInterval(interval)
-                
-                // Save user to localStorage
-                localStorage.setItem('ca_user', JSON.stringify(data.user))
-                localStorage.setItem('ca_token', data.token)
+    clearInterval(interval)
 
-                feedback.textContent = '✅ Login successful!'
-                feedback.className = 'feedback success'
+    // Format user properly
+    const user = {
+        username: data.user.username || data.user.displayName,
+        email: data.user.email,
+        avatar: data.user.avatar,
+        provider: data.user.provider,
+        level: 'beginner',
+        elo: 1200,
+        assessmentDone: false
+    }
 
-                setTimeout(() => {
-                    window.location.href = '../pages/gatekeeper.html'
-                }, 1000)
-            }
+    // Save to localStorage
+    localStorage.setItem('ca_user', JSON.stringify(user))
+    localStorage.setItem('ca_token', data.token)
+
+    // Save to users array
+    const users = JSON.parse(localStorage.getItem('ca_users') || '[]')
+    const exists = users.find(u => u.email === user.email)
+    if (!exists) {
+        users.push(user)
+        localStorage.setItem('ca_users', JSON.stringify(users))
+    }
+
+    feedback.textContent = '✅ Login successful!'
+    feedback.className = 'feedback success'
+
+    // New user → assessment, existing user → gatekeeper
+    setTimeout(() => {
+        if (!exists) {
+            window.location.href = 'assessment.html'
+        } else {
+            window.location.href = '../pages/gatekeeper.html'
+        }
+    }, 1000)
+}
         } catch (err) {
             console.log('Polling error:', err)
         }
