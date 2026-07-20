@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+    <link rel="stylesheet" href="file:///C:/OM dont open oit/THE BIG ONE/codearena using electrons/node_modules/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="file:///C:/OM dont open oit/THE BIG ONE/codearena using electrons/node_modules/codemirror/theme/dracula.css">
+<script src="file:///C:/OM dont open oit/THE BIG ONE/codearena using electrons/node_modules/codemirror/lib/codemirror.js"></script>
+<script src="file:///C:/OM dont open oit/THE BIG ONE/codearena using electrons/node_modules/codemirror/mode/python/python.js"></script>
+<script src="file:///C:/OM dont open oit/THE BIG ONE/codearena using electrons/node_modules/codemirror/mode/javascript/javascript.js"></script>
+<script src="file:///C:/OM dont open oit/THE BIG ONE/codearena using electrons/node_modules/codemirror/mode/clike/clike.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeArena - Editor</title>
@@ -122,32 +127,33 @@
 
 </div>
 <script>
-require.config({ paths: { vs: '../node_modules/monaco-editor/min/vs' }});
-require(['vs/editor/editor.main'], function() {
-    const projectName = localStorage.getItem('current_project_name') || 'Project'
-    const savedCode = localStorage.getItem('code_' + projectName) || '# Welcome to CodeArena\n# Write your code here\n\ndef greet(name):\n    return f\'Hello, {name}!\'\n\nprint(greet(\'CodeArena\'))'
-    
-    window.editor = monaco.editor.create(document.getElementById('monaco-editor'), {
-        value: savedCode,
-        language: 'python',
-        theme: 'vs-dark',
-        fontSize: 14,
-        fontFamily: 'Consolas, Monaco, monospace',
-        minimap: { enabled: true },
-        automaticLayout: true,
-        scrollBeyondLastLine: false,
-        lineNumbers: 'on',
-        roundedSelection: true,
-        cursorStyle: 'line'
-    })
+var projectName = localStorage.getItem('current_project_name') || 'Project'
+const savedCode = localStorage.getItem('code_' + projectName) || '# Welcome to CodeArena\n# Write your code here\n\ndef greet(name):\n    return f\'Hello, {name}!\'\n\nprint(greet(\'CodeArena\'))'
 
-    window.editor.onDidChangeModelContent(() => {
-        localStorage.setItem('code_' + projectName, window.editor.getValue())
-    })
+window.editor = CodeMirror(document.getElementById('monaco-editor'), {
+    value: savedCode,
+    mode: 'python',
+    theme: 'dracula',
+    lineNumbers: true,
+    indentUnit: 4,
+    tabSize: 4,
+    indentWithTabs: false,
+    lineWrapping: false,
+    autofocus: true,
+    extraKeys: {
+        'Ctrl-S': function() {
+            localStorage.setItem('code_' + projectName, window.editor.getValue())
+        }
+    }
+})
 
-    window.editor.onDidChangeCursorPosition((e) => {
-        document.getElementById('statusCursor').textContent = `Ln ${e.position.lineNumber}, Col ${e.position.column}`
-    })
+window.editor.on('change', () => {
+    localStorage.setItem('code_' + projectName, window.editor.getValue())
+})
+
+window.editor.on('cursorActivity', () => {
+    const cursor = window.editor.getCursor()
+    document.getElementById('statusCursor').textContent = `Ln ${cursor.line + 1}, Col ${cursor.ch + 1}`
 })
 </script>
 
