@@ -188,15 +188,33 @@ body {
     overflow: hidden;
     position: relative;
 }
-
-.CodeMirror {
-    height: 100%;
-    width: 100%;
-    font-family: 'Consolas', 'Monaco', monospace;
+.line-numbers {
+    background: #16161E;
+    padding: 12px 8px;
+    text-align: right;
+    font-family: 'Consolas', monospace;
     font-size: 14px;
+    color: #5A5A70;
+    user-select: none;
+    min-width: 48px;
+    border-right: 1px solid rgba(99,102,241,0.1);
+    overflow: hidden;
     line-height: 1.6;
 }
 
+.code-editor {
+    flex: 1;
+    background: #16161E;
+    border: none;
+    outline: none;
+    color: #E0E0E0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 12px;
+    resize: none;
+    overflow-y: auto;
+}
 /* OUTPUT PANEL */
 .output-panel {
     height: 180px;
